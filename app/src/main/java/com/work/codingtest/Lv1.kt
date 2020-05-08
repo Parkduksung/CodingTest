@@ -106,4 +106,41 @@ object Lv1 {
     fun plusDigits(n: Int): Int =
         n.toString().map { it.toString().toInt() }.sum()
 
+    fun strangeString(s: String): String {
+
+        var result = ""
+        var count = 0
+
+        s.forEach {
+            when {
+                it == ' ' -> {
+
+                    count = 0
+                    result += " "
+                }
+
+                count % 2 == 0 -> {
+                    result += it.toUpperCase()
+                    count++
+                }
+
+                else -> {
+                    result += it.toLowerCase()
+                    count++
+                }
+            }
+        }
+        return result
+
+// 다른사람풀이중 이게 제일 신선.. 나머지는 다 내꺼랑 동일하네..
+//        s.split(" ").joinToString(" ") { word ->
+//            word
+//                .mapIndexed { index, char ->
+//                    if (index % 2 == 0) char.toUpperCase() else char.toLowerCase()
+//                }
+//                .joinToString("")
+//        }
+    }
+
+
 }
