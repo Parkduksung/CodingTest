@@ -182,4 +182,24 @@ object Lv1 {
             }
         }.joinToString("")
 
+    fun suBak(n: Int): String {
+
+        var result = ""
+
+        if (n % 2 == 0) {
+            for (i in 0 until n / 2)
+                result += "수박"
+        } else {
+
+            for (i in 0 until n / 2)
+                result += "수박"
+
+            result += "수"
+        }
+
+        return result
+
+//        이거 좋다..
+//        return "수박".repeat(n / 2) + if (n % 2 != 0) "수" else ""
+    }
 }
