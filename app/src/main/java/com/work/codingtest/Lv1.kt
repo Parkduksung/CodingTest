@@ -221,6 +221,7 @@ object Lv1 {
     //다 비슷한데 짧게 했을뿐..
     fun dealWithString(s: String): Boolean =
         (s.length == 4 || s.length == 6) && ((s.toIntOrNull()) != null)
+
     //이런 구조도 사용 가능하구나...
 //    return when (s.length) {
 //        4, 6 -> true
@@ -231,7 +232,8 @@ object Lv1 {
 //        else -> true
 //    }
 
-
-}
+    //String(s.toCharArray().sortedArrayDescending()) 이것도 좋은듯.
+    fun descendingText(s: String): String =
+        s.map { it }.sortedDescending().joinToString("")
 
 }
