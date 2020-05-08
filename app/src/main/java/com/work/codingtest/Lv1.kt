@@ -142,5 +142,18 @@ object Lv1 {
 //        }
     }
 
+    fun sumOfDivisor(n: Int): Int {
 
+        var sum = 0
+
+        for (i in 1..n) {
+            if (n % i == 0)
+                sum += i
+        }
+
+        return sum
+
+        // 좀더 코틀린스러운 답.
+        //(1..n).filter { n % it == 0 }.sum()
+    }
 }
