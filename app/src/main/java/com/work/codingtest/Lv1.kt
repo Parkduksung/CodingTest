@@ -67,4 +67,21 @@ object Lv1 {
 //        }
     }
 
+
+    fun reverseArray(n: Long): IntArray {
+
+        val list = mutableListOf<Int>()
+
+        n.toString().forEach {
+            list.add(it.toInt() - 48)
+        }
+
+        list.reverse()
+
+        return list.toIntArray()
+
+//        아래 방법이 더 나은듯..
+//        n.toString().reversed().map { it.toString().toInt() }.toIntArray()
+    }
+
 }
