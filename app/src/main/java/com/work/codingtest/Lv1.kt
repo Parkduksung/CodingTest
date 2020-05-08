@@ -156,4 +156,30 @@ object Lv1 {
         // 좀더 코틀린스러운 답.
         //(1..n).filter { n % it == 0 }.sum()
     }
+
+    //다 비슷비슷한거같음.
+    fun siGerCode(s: String, n: Int): String =
+        s.map {
+            when (it.toInt()) {
+                in 65..90 -> {
+                    if (it.toInt() + n > 90) {
+                        (it.toInt() + n - 26).toChar()
+                    } else {
+                        (it.toInt() + n).toChar()
+                    }
+                }
+
+                in 97..122 -> {
+                    if (it.toInt() + n > 122) {
+                        (it.toInt() + n - 26).toChar()
+                    } else {
+                        (it.toInt() + n).toChar()
+                    }
+                }
+                else -> {
+                    it
+                }
+            }
+        }.joinToString("")
+
 }
