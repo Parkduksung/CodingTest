@@ -217,4 +217,21 @@ object Lv1 {
         }
         return "김서방은 ${num}에 있다"
     }
+
+    //다 비슷한데 짧게 했을뿐..
+    fun dealWithString(s: String): Boolean =
+        (s.length == 4 || s.length == 6) && ((s.toIntOrNull()) != null)
+    //이런 구조도 사용 가능하구나...
+//    return when (s.length) {
+//        4, 6 -> true
+//        else -> false
+//    }
+//    && when (s.toIntOrNull()) {
+//        null -> false
+//        else -> true
+//    }
+
+
+}
+
 }
