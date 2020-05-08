@@ -202,4 +202,19 @@ object Lv1 {
 //        이거 좋다..
 //        return "수박".repeat(n / 2) + if (n % 2 != 0) "수" else ""
     }
+
+    fun findKim(seoul: Array<String>): String {
+
+//        이게 더 의미가 확실한듯.
+//        seoul.indexOf("Kim")
+        var num = 0
+
+        seoul.filterIndexed { index, s ->
+            if (s == "Kim") {
+                num = index
+            }
+            false
+        }
+        return "김서방은 ${num}에 있다"
+    }
 }
