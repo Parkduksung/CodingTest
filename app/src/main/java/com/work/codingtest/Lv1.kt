@@ -67,7 +67,6 @@ object Lv1 {
 //        }
     }
 
-
     fun reverseArray(n: Long): IntArray {
 
         val list = mutableListOf<Int>()
@@ -82,6 +81,22 @@ object Lv1 {
 
 //        아래 방법이 더 나은듯..
 //        n.toString().reversed().map { it.toString().toInt() }.toIntArray()
+    }
+
+    fun descendingOrder(n: Long): Long {
+
+        //위에문제 영감을 받아서 접목시켜봄.
+        var answer = ""
+
+        n.toString().map { it.toString().toInt() }.sortedDescending().forEach {
+            answer += it
+        }
+        return answer.toLong()
+
+
+//        joinToString 같은 join은 list를 하나의 변수로 합치는데 도움을 주겠군..
+//        n.toString().map { it.toString().toInt() }.sortedDescending().joinToString { "" }.toLong()
+
     }
 
 }
