@@ -245,5 +245,27 @@ object Lv1 {
 //            it.sortBy { it[n] }
 //        }
 
+    fun sumOfBetweenTwoInt(a: Int, b: Int): Long {
+        var sum = 0L
+        when {
 
+            a > b -> {
+                for (i in b..a)
+                    sum += i
+            }
+
+            b > a -> {
+                for (i in a..b)
+                    sum += i
+            }
+            b == a -> {
+                sum += a
+            }
+        }
+        return sum
+//      깔끔한듯 싶다.  그리고 max(a, b) 요런거 알아두면 더 좋을듯 min(a,b)랑.
+//        val start : Long = (if(a>b) b else a).toLong()
+//        val end : Long = (if(a>b) a else b).toLong()
+//        return (start..end).sum()
+    }
 }
