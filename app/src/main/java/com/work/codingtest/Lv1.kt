@@ -236,4 +236,14 @@ object Lv1 {
     fun descendingText(s: String): String =
         s.map { it }.sortedDescending().joinToString("")
 
+
+    fun myStyleArray(strings: Array<String>, n: Int): Array<String> =
+        strings.map { it }.sorted().sortedBy { it[n] }.toTypedArray()
+    // 먼가 아래가 더 깔끔하다.(맵과 형변환이 필요 없으니..)
+//        strings.also {
+//            it.sorted()
+//            it.sortBy { it[n] }
+//        }
+
+
 }
