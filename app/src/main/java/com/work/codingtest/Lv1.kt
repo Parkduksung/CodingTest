@@ -284,4 +284,14 @@ object Lv1 {
 //            else it.toIntArray()
 //        }
     }
+
+    fun getMiddleText(s: String): String {
+        return if (s.length % 2 == 1) {
+            s.substring(s.length / 2, s.length / 2 + 1)
+        } else {
+            s.substring(s.length / 2 - 1, s.length / 2 + 1)
+        }
+    }
+//    with(s) { substring(length / 2 - 1 + (length % 2) .. length / 2) } 천재아니냐..?
+//    생각해보면 짝수는 홀수든 상관은 없다고 이해되는데 처음생각하기엔 좀 어려울수도...
 }
