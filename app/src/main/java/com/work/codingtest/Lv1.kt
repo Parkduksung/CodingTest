@@ -292,6 +292,27 @@ object Lv1 {
             s.substring(s.length / 2 - 1, s.length / 2 + 1)
         }
     }
-//    with(s) { substring(length / 2 - 1 + (length % 2) .. length / 2) } 천재아니냐..?
+
+    //    with(s) { substring(length / 2 - 1 + (length % 2) .. length / 2) } 천재아니냐..?
 //    생각해보면 짝수는 홀수든 상관은 없다고 이해되는데 처음생각하기엔 좀 어려울수도...
+
+
+    fun numberK(array: IntArray, commands: Array<IntArray>): IntArray =
+        commands.map {
+            array.slice(
+                IntRange(
+                    it[0] - 1,
+                    it[1] - 1
+                )
+            ).sorted()[it[2] - 1]
+        }.toIntArray()
+    // 아래같이 풀어서 맞췄는데 위에 답으로 좀더 간출여 봤음.
+//        val resultArray = mutableListOf<Int>()
+//
+//        commands.forEach {
+//           resultArray.add( array.slice(IntRange(it[0]-1,it[1]-1)).sorted()[it[2]-1])
+//        }
+//        return resultArray.toIntArray()
+
+
 }
