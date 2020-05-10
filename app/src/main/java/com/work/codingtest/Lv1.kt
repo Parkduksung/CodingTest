@@ -268,4 +268,20 @@ object Lv1 {
 //        val end : Long = (if(a>b) a else b).toLong()
 //        return (start..end).sum()
     }
+
+    fun divideNum(arr: IntArray, divisor: Int): IntArray {
+        //먼가 한줄로 줄일수도 있을꺼같은데..
+        return if (arr.filter { it % divisor == 0 }.map { it }.sorted().toIntArray().isEmpty()) {
+            arrayOf(-1).toIntArray()
+        } else {
+            arr.filter { it % divisor == 0 }.map { it }.sorted().toIntArray()
+        }
+
+        //코틀린스러운듯.. 아래 답이 제일 다른 풀이중에서 제일 인상깊네. 다 돌아가거나 나랑 같은생각인데.
+//        arr.filter { it % divisor == 0 }.sortedBy { it }.let
+//        {
+//            if (it.isEmpty()) intArrayOf(-1)
+//            else it.toIntArray()
+//        }
+    }
 }
