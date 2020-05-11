@@ -492,7 +492,6 @@ object Lv1 {
         }
         return intArrayOf(array[array.lastIndex], (n * m) / array[array.lastIndex])
     }
-
     //이런 스타일이 괜찮은듯. (최대공약수 구하는 함수.)
     //fun gcm(a: Int, b: Int): Int {
     //        if (b == 0) {
@@ -501,4 +500,12 @@ object Lv1 {
     //            return gcm(b, a%b)
     //        }
     //    }
+
+
+    //나도 간단하게 풀었다 생각했지만
+    // arr.average() 대박인듯..
+    fun average(arr: IntArray): Double =
+        arr.sumByDouble { it.toDouble() } / arr.size
+
+
 }
