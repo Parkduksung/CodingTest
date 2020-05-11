@@ -533,4 +533,23 @@ object Lv1 {
         }
         return result
     }
+
+    //오래걸릴게 아닌데..ㅜ
+    fun coverPhoneNumber(s: String): String {
+        var result = ""
+        s.forEachIndexed { index, c ->
+            result += if (index < s.lastIndex - 3) {
+                "*"
+            } else {
+                "$c"
+            }
+        }
+        return result
+    }
+    //아래같이가 괜찮을듯 위에서 한데로 응용.
+    //return phone_number.mapIndexed { index, c ->
+    //            if (phone_number.length - 5 < index) c else '*'
+    //        }.joinToString(separator = "")
+
+
 }
