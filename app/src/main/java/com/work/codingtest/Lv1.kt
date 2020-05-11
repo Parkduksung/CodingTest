@@ -452,4 +452,25 @@ object Lv1 {
             arr.filter { it != arr.min() }.map { it }.toIntArray()
         }
 
+
+    //Math 함수 써도 상관없었는데 바로 생각이 나지 않아서 이렇게 했는데 확실히 for문에 범위가 넓으니
+    //불필요하게 돌릴필요없는 제한적인 구문을 넣어줘서 시간을 단축시키는게 필요하네..
+    fun squareRoot(n: Long): Long {
+        var result = 0L
+        for (i in 1..50000000000000) {
+            if (i * i == n) {
+                result = ((i + 1) * (i + 1))
+                break
+            } else if (i * i > n) {
+                break
+            }
+        }
+        return if (result == 0L) {
+            -1
+        } else {
+            result
+        }
+    }
+
+
 }
