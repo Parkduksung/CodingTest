@@ -508,4 +508,29 @@ object Lv1 {
         arr.sumByDouble { it.toDouble() } / arr.size
 
 
+    //tailrec  이걸 많이 사용하는 이유가 모지...
+    //거의다 나랑 같은 방식이네..
+    fun collatz(num: Int): Int {
+        var count = num
+        var result = 0
+
+        for (i in 0..501) {
+            if (i == 501 && count != 1) {
+                result = -1
+            } else if (count == 1) {
+                result = i
+                break
+            } else {
+                when {
+                    count % 2 == 1 -> {
+                        count = (count * 3) + 1
+                    }
+                    num % 2 == 0 -> {
+                        count /= 2
+                    }
+                }
+            }
+        }
+        return result
+    }
 }
