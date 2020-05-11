@@ -567,4 +567,36 @@ object Lv1 {
         return array.toLongArray()
     }
     //LongArray(n) { x.toLong() * (it + 1) } 예술임..ㅜ
+
+
+    //왜이리 어렵게 생각했는지 모르겟네..ㅜ
+    fun additionOfMatrix(arr1: Array<IntArray>, arr2: Array<IntArray>): Array<IntArray> {
+        val result = mutableListOf<IntArray>()
+
+        for (i in 0 until arr1.size) {
+            val t = mutableListOf<Int>()
+            for (j in 0 until arr1[0].size) {
+                t.add(arr1[i][j] + arr2[i][j])
+            }
+            result.add(t.toIntArray())
+        }
+        return result.toTypedArray()
+    }
+    //간단하네..
+//    return Array(arr1.size) {
+//            row ->
+//            IntArray(arr1[0].size) {
+//                col ->
+//                arr1[row][col] + arr2[row][col]
+//            }
+//        }
+
+    //mapIndexed로 구현한건데 알아두면 편할듯..
+    //var answer = arrayOf<IntArray>()
+    //
+    //       answer = arr1.mapIndexed { indexArr, ints ->
+    //          ints.mapIndexed { indexInts, i ->
+    //             i + arr2[indexArr][indexInts]
+    //          }.toIntArray()
+    //       }.toTypedArray()
 }
