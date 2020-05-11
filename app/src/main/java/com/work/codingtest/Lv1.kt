@@ -473,4 +473,14 @@ object Lv1 {
     }
 
 
+    //사실 num == 0 도 제거해도 상관없지만 먼가 조건을 명시해주고 싶어서..
+    fun evenAndOdd(num: Int): String {
+        return when {
+            num == 0 -> "Even"
+            num % 2 == 0 -> "Even"
+            else -> "Odd"
+        }
+    }
+
+
 }
