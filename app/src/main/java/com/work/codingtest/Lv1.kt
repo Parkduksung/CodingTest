@@ -1,5 +1,6 @@
 package com.work.codingtest
 
+import java.lang.Math.max
 import java.util.*
 
 object Lv1 {
@@ -482,5 +483,22 @@ object Lv1 {
         }
     }
 
+    //좀 독특하게 풀긴 했는데 결국 이문제는 최대공약수 구하는게 관건이다.
+    fun maximumCommonFactorMinimumCmmonMultiple(n: Int, m: Int): IntArray {
+        val array = mutableListOf<Int>()
+        for (i in 1..max(n, m)) {
+            if (n % i == 0 && m % i == 0)
+                array.add(i)
+        }
+        return intArrayOf(array[array.lastIndex], (n * m) / array[array.lastIndex])
+    }
 
+    //이런 스타일이 괜찮은듯. (최대공약수 구하는 함수.)
+    //fun gcm(a: Int, b: Int): Int {
+    //        if (b == 0) {
+    //            return a
+    //        } else {
+    //            return gcm(b, a%b)
+    //        }
+    //    }
 }
