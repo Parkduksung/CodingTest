@@ -315,35 +315,8 @@ object Lv1 {
 //        return resultArray.toIntArray()
 
 
-//    fun workoutClothes(n: Int, lost: IntArray, reserve: IntArray): Int {
-//
-//
-//        reserve.filter { !lost.contains(it) }.map { it }
-//
-//
-//    }
-
     //너무 오래걸림.. 스택이란 개념을 캐치하고나서 바로풀긴했는데..
     //아래 풀이를 참고해서 스택관련 공부좀 해야될듯..
-//    var answer = 0
-//    val stack = Stack<Int>()
-//
-//    moves.forEach {
-//        for (i in board.indices) {
-//            if (board[i][it - 1] != 0) {
-//                if (stack.isNotEmpty() && stack.peek() == board[i][it - 1]) {
-//                    answer += 2
-//                    stack.pop()
-//                } else {
-//                    stack.push(board[i][it - 1])
-//                }
-//                board[i][it - 1] = 0
-//
-//                break
-//            }
-//        }
-//    }
-//    return answer
     fun carain(board: Array<IntArray>, moves: IntArray): Int {
 
         val resultArray = mutableListOf<Int>()
@@ -374,6 +347,103 @@ object Lv1 {
         }
         return resultArray.size - popArray.size
     }
+//    var answer = 0
+//    val stack = Stack<Int>()
+//
+//    moves.forEach {
+//        for (i in board.indices) {
+//            if (board[i][it - 1] != 0) {
+//                if (stack.isNotEmpty() && stack.peek() == board[i][it - 1]) {
+//                    answer += 2
+//                    stack.pop()
+//                } else {
+//                    stack.push(board[i][it - 1])
+//                }
+//                board[i][it - 1] = 0
+//
+//                break
+//            }
+//        }
+//    }
+//    return answer
+
+
+    fun mockTest(answers: IntArray): IntArray {
+
+        val case1 = intArrayOf(1, 2, 3, 4, 5) /// 반복이 5개
+        val case2 = intArrayOf(2, 1, 2, 3, 2, 4, 2, 5)  //반복이 8개
+        val case3 = intArrayOf(3, 3, 1, 1, 2, 2, 4, 4, 5, 5)   //반복이 10개
+
+        var sameNum1 = 0
+        var sameNum2 = 0
+        var sameNum3 = 0
+
+        for (i in 0 until answers.size) {
+            if (case1[i % case1.size] == answers[i % answers.size]) {
+                sameNum1 += 1
+            }
+        }
+        for (i in 0 until answers.size) {
+            if (case2[i % case2.size] == answers[i % answers.size]) {
+                sameNum2 += 1
+            }
+        }
+        for (i in 0 until answers.size) {
+            if (case3[i % case3.size] == answers[i % answers.size]) {
+                sameNum3 += 1
+            }
+        }
+
+        val array = intArrayOf(sameNum1, sameNum2, sameNum3)
+
+        return when {
+            array.distinct().size == 1 -> intArrayOf(1, 2, 3)
+            else -> when {
+                array.max() == array[0] -> {
+                    when {
+                        array[1] == array[0] -> {
+                            intArrayOf(1, 2)
+                        }
+                        array[2] == array[0] -> {
+                            intArrayOf(1, 3)
+                        }
+                        else -> intArrayOf(1)
+                    }
+                }
+                array.max() == array[1] -> when {
+                    array[1] == array[0] -> {
+                        intArrayOf(1, 2)
+                    }
+                    array[2] == array[1] -> {
+                        intArrayOf(2, 3)
+                    }
+                    else -> intArrayOf(2)
+                }
+                else -> when {
+                    array[2] == array[0] -> {
+                        intArrayOf(1, 3)
+                    }
+                    array[2] == array[1] -> {
+                        intArrayOf(2, 3)
+                    }
+                    else -> intArrayOf(3)
+                }
+            }
+        }
+    }
+    //개인적으로 이렇게 생각을 했엇어야 됬는데 경우의수가 될 수 있는 2^3만 처리하면 된다 생각해서 조잡하게 한듯..
+    //갯수를 반환하는 fun getNum(case : IntArray, answers: IntArray) : Int 로 함수 만들고 했으면 더 깔끔할듯.
+    // val array = intArrayOf(sameNum1, sameNum2, sameNum3).max()
+    //
+    //        val resultArray = mutableListOf<Int>()
+    //
+    //        if (sameNum1 == array) resultArray.add(1)
+    //        if (sameNum2 == array) resultArray.add(2)
+    //        if (sameNum3 == array) resultArray.add(3)
+    //
+    //        return resultArray.toIntArray()
 
 
 }
+
+
