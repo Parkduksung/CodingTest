@@ -315,4 +315,65 @@ object Lv1 {
 //        return resultArray.toIntArray()
 
 
+//    fun workoutClothes(n: Int, lost: IntArray, reserve: IntArray): Int {
+//
+//
+//        reserve.filter { !lost.contains(it) }.map { it }
+//
+//
+//    }
+
+    //너무 오래걸림.. 스택이란 개념을 캐치하고나서 바로풀긴했는데..
+    //아래 풀이를 참고해서 스택관련 공부좀 해야될듯..
+//    var answer = 0
+//    val stack = Stack<Int>()
+//
+//    moves.forEach {
+//        for (i in board.indices) {
+//            if (board[i][it - 1] != 0) {
+//                if (stack.isNotEmpty() && stack.peek() == board[i][it - 1]) {
+//                    answer += 2
+//                    stack.pop()
+//                } else {
+//                    stack.push(board[i][it - 1])
+//                }
+//                board[i][it - 1] = 0
+//
+//                break
+//            }
+//        }
+//    }
+//    return answer
+    fun carain(board: Array<IntArray>, moves: IntArray): Int {
+
+        val resultArray = mutableListOf<Int>()
+
+        moves.forEach { count ->
+            var t = 0
+            board.map { it[count - 1] }.forEachIndexed { index, i ->
+                if (i != 0 && t == 0) {
+                    resultArray.add(i)
+                    t++
+                    board[index][count - 1] = 0
+                }
+            }
+        }
+
+        val popArray = mutableListOf<Int>()
+
+        resultArray.forEach {
+            if (popArray.size == 0) {
+                popArray.add(it)
+            } else {
+                if (popArray[popArray.lastIndex] == it) {
+                    popArray.removeAt(popArray.lastIndex)
+                } else {
+                    popArray.add(it)
+                }
+            }
+        }
+        return resultArray.size - popArray.size
+    }
+
+
 }
