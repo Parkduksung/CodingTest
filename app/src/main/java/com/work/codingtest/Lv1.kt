@@ -558,4 +558,13 @@ object Lv1 {
         return x % x.toString().sumBy { it.toString().toInt() } == 0
     }
 
+    //음.. add 할때  (x*i).toLong(), x.toLong() * i  랑의 차이를 알아야 할듯..
+    fun spacingAsManyAsX(x: Int, n: Int): LongArray {
+        val array = mutableListOf<Long>()
+        for (i in 1..n) {
+            array.add((x.toLong() * i))
+        }
+        return array.toLongArray()
+    }
+    //LongArray(n) { x.toLong() * (it + 1) } 예술임..ㅜ
 }
