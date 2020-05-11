@@ -444,6 +444,12 @@ object Lv1 {
     //        return resultArray.toIntArray()
 
 
+    //문제보면 내림차순 이런게 없었는데 계속 제일 작은수 제거하라해서 내림차순한뒤 제거해서 계속 답이 아니었군..
+    fun getMinimumNum(arr: IntArray): IntArray =
+        if (arr.isEmpty() || arr[0] == 10) {
+            intArrayOf(-1)
+        } else {
+            arr.filter { it != arr.min() }.map { it }.toIntArray()
+        }
+
 }
-
-
