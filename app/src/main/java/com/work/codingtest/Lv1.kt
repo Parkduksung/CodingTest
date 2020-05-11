@@ -552,4 +552,10 @@ object Lv1 {
     //        }.joinToString(separator = "")
 
 
+    //짧게 한사람들중 중 좀 다른게 it으로 받는게 char 형이다보니 stirng으로 바꾸고 int형으로 바꾸지 않으면
+    //-48 해줘야 되는데 그 차이인듯 싶다.. 한 2개정도는 fold란걸 썻는데.. 사실 떠오르지 않을것 같다..
+    fun hazard(x: Int): Boolean {
+        return x % x.toString().sumBy { it.toString().toInt() } == 0
+    }
+
 }
