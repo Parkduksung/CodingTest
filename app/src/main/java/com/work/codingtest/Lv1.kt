@@ -599,4 +599,37 @@ object Lv1 {
     //             i + arr2[indexArr][indexInts]
     //          }.toIntArray()
     //       }.toTypedArray()
+
+
+    // 0/0을 대응해줬어야 했구만.. 사실 0/0은 0이니 상관없다 생각했엇는데.. ㅜ
+    // 어찌됬건 map, hashMap 에 대해서 공부좀 더 해야될듯..
+    fun rateFail(N: Int, stages: IntArray): IntArray {
+        val array = mutableListOf<Float>()
+        var size = stages.size
+
+        for (i in 1..N) {
+            var count = 0
+
+            stages.forEach {
+                if (it == i)
+                    count += 1
+            }
+
+            if (size == 0) {
+                array.add((0).toFloat())
+            } else {
+                array.add((count.toFloat()) / size)
+                size -= count
+            }
+        }
+
+        val map = mutableMapOf<Int, Float>()
+        array.forEachIndexed { index, fl ->
+            map[index + 1] = fl
+        }
+
+        val descendArray = map.toList().sortedByDescending { (_, value) -> value }.toMap()
+
+        return descendArray.map { it.key }.toIntArray()
+    }
 }
