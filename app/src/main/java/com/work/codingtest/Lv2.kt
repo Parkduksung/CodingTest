@@ -44,4 +44,11 @@ object Lv2 {
         return sum
     }
 
+    // 사실 좀더 간단하게 하려면 음.
+    // s.split(" ").map { it.toInt() }.let { "${it.min()} ${it.max()}" }
+    // 이게 좀더 코틀린 냄새남.
+    fun maxNumAndMinNum(s: String): String =
+        "${s.split(" ").map { it.toInt() }.min()} ${s.split(" ").map { it.toInt() }.max()}"
+
+
 }
