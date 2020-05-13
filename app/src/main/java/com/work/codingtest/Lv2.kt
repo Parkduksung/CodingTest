@@ -51,4 +51,45 @@ object Lv2 {
         "${s.split(" ").map { it.toInt() }.min()} ${s.split(" ").map { it.toInt() }.max()}"
 
 
+    //map의 key값이 중복이 안된다는걸 알게 된 문제 value값은 중복가능...
+    //https://codediver.tistory.com/49 참고할것.
+    //mutableList에서 remove시켜주고나서 값 toList해주면 문제가 풀리는데 그렇지 않으면 답은 다 맞긴한데 왜 안되는거지...ㅜ
+    fun functionalDevelopment(progresses: IntArray, speeds: IntArray): IntArray {
+
+        val array = mutableListOf<Int>()
+
+        for (i in 0 until progresses.size) {
+            var count = 1
+            while (true) {
+                if (progresses[i] + speeds[i] * count >= 100) {
+                    array.add(count)
+                    break
+                }
+                count++
+            }
+        }
+
+        val resultArray = mutableListOf<Int>()
+
+        var count = 0
+        var sameNum = 1
+        while (true) {
+            if (array.size - 1 == resultArray.size) {
+                resultArray.add(sameNum)
+                break
+            } else {
+                if (array[count] >= array[count + 1]) {
+                    sameNum += 1
+                    array.removeAt(count + 1)
+                    array.toList()
+                } else {
+                    resultArray.add(sameNum)
+                    sameNum = 1
+                    count += 1
+                }
+            }
+        }
+        return resultArray.toIntArray()
+    }
+
 }
