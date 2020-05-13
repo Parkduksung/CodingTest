@@ -1,5 +1,7 @@
 package com.work.codingtest
 
+import java.util.*
+
 object Lv2 {
 
     //오래 걸릴게 아닌데..ㅜ
@@ -90,6 +92,59 @@ object Lv2 {
             }
         }
         return resultArray.toIntArray()
+    }
+
+
+    //FIFO 방식인건 바로 눈치챘는데 이걸 표현하는데 좀 걸렸네
+    //val queueList: Queue<Int> = LinkedList() 이거 사용법이 중요할듯
+    fun bridge(bridge_length: Int, weight: Int, truck_weights: IntArray): Int {
+
+        var resultCount = 0
+        val queueList: Queue<Int> = LinkedList()
+
+
+        truck_weights.forEachIndexed { index, it ->
+
+            while (true) {
+                resultCount++
+
+                if (queueList.size < bridge_length) {
+                    if (it + queueList.sum() <= weight) {
+                        queueList.add(it)
+                        break
+                    } else {
+                        queueList.add(0)
+                    }
+                } else {
+                    queueList.remove()
+                    if (it + queueList.sum() <= weight) {
+                        queueList.add(it)
+                        break
+                    } else {
+                        queueList.add(0)
+                    }
+                }
+            }
+
+            if (index == truck_weights.lastIndex) {
+                while (true) {
+                    resultCount++
+
+                    if (queueList.size < bridge_length) {
+                        queueList.add(0)
+                    } else {
+                        queueList.remove()
+
+                        if (queueList.sum() == 0) {
+                            break
+                        } else {
+                            queueList.add(0)
+                        }
+                    }
+                }
+            }
+        }
+        return resultCount
     }
 
 }
