@@ -147,4 +147,48 @@ object Lv2 {
         return resultCount
     }
 
+
+    //스택으로 풀지는 않았지만 사용해서 풀어보길...
+    fun ironBar(arrangement: String): Int {
+
+        var result = 0
+
+        val replaceString = arrangement.replace("()", "*")
+
+        replaceString.forEachIndexed { index, c ->
+            var indexNum = index
+            var sumStar = 0
+            var cnt1 = 0
+            while (true) {
+                if (indexNum > replaceString.length - 1)
+                    break
+                when (replaceString[indexNum]) {
+                    '(' -> {
+                        cnt1++
+
+                    }
+
+                    ')' -> {
+                        if (cnt1 != 0)
+                            cnt1--
+
+                    }
+                    '*' -> {
+                        if (cnt1 != 0)
+                            sumStar++
+                    }
+                }
+                indexNum++
+                if (cnt1 == 0) {
+                    if (sumStar != 0) {
+                        result += sumStar + 1
+                    }
+                    break
+                }
+            }
+        }
+
+        return result
+    }
+
 }
