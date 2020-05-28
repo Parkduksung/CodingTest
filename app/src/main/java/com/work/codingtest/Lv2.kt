@@ -191,4 +191,58 @@ object Lv2 {
         return result
     }
 
+//    fun numberBaseball(baseball: Array<IntArray>): Int {
+//
+//        var result = 0
+//
+//        var num = "111"
+//
+//
+//        for (i in 123..987) {
+//
+//            val num = i.toString()
+//
+//
+//            if (num[0] == num[1] || num[0] == num[2] || num[1] == num[2]) {
+//                continue
+//            } else if (num[1] == '0' || num[2] == '0') {
+//                continue
+//            } else {
+//                baseball.forEachIndexed { index, ints ->
+//                    var strike = 0
+//                    var ball = 0
+//
+//                    for(j in 0..2){
+//
+//                    }
+//
+//                    ints[0].toString()[0]
+//
+//                    ints.forEachIndexed { index, i ->
+//
+//                        if(num[index] == i[index])
+//
+//
+//                    }
+//                }
+//
+//            }
+//
+//
+//        }
+//
+//
+//        while (num.toInt() > 999) {
+//
+//            val asdf = num.replace("0", "1").toInt()
+//
+//            var check = 0
+//            var strike = 0
+//            var ball = 0
+//
+//
+//        }
+//    }
+
+
 }

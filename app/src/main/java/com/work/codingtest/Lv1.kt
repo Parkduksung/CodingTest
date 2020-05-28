@@ -1,5 +1,6 @@
 package com.work.codingtest
 
+
 import java.lang.Math.max
 import java.util.*
 
@@ -69,7 +70,7 @@ object Lv1 {
     }
 
     fun reverseArray(n: Long): IntArray {
-
+        //1번째
         val list = mutableListOf<Int>()
 
         n.toString().forEach {
@@ -79,6 +80,12 @@ object Lv1 {
         list.reverse()
 
         return list.toIntArray()
+
+        //2번째
+        //n.toString().reversed().map { it.toInt() - 48 }.toIntArray()
+        //아래는 그냥 string으로 바꾸고 다시 int로 바꾼건데 48이란 숫자를 처음 나도 몰라서 log돌려서 얼추
+        //맞춘거라 아래가 좀더 나을듯싶다..ㅜ
+
 
 //        아래 방법이 더 나은듯..
 //        n.toString().reversed().map { it.toString().toInt() }.toIntArray()
@@ -107,6 +114,9 @@ object Lv1 {
     fun plusDigits(n: Int): Int =
         n.toString().map { it.toString().toInt() }.sum()
 
+    //2번째 n.toString().toList().map { it.toString().toInt() }.sum()
+    //거의 동일ㅎㅎ
+
     fun strangeString(s: String): String {
 
         var result = ""
@@ -115,7 +125,6 @@ object Lv1 {
         s.forEach {
             when {
                 it == ' ' -> {
-
                     count = 0
                     result += " "
                 }
@@ -132,6 +141,50 @@ object Lv1 {
             }
         }
         return result
+
+        //2번째풀이(문제 제대로 안읽어서 오래걸림...ㅜ)
+        //val resultList = mutableListOf<String>()
+        //
+        //        if (s.contains(" ")) {
+        //            s.split(" ").forEach {
+        //                var convertText = ""
+        //                it.forEachIndexed { index, c ->
+        //                    convertText += if (index % 2 == 0) {
+        //                        c.toUpperCase()
+        //                    } else {
+        //                        c.toLowerCase()
+        //                    }
+        //                }
+        //                resultList.add(convertText)
+        //            }
+        //        } else {
+        //            var convertText = ""
+        //            s.forEachIndexed { index, c ->
+        //                convertText += if (index % 2 == 0) {
+        //                    c.toUpperCase()
+        //                } else {
+        //                    c.toLowerCase()
+        //                }
+        //            }
+        //            resultList.add(convertText)
+        //        }
+        //
+        //        return resultList.joinToString(" ")
+
+        //근데 중요한게 아래 joinToString("구분자"){변환} -> 이 구문을 이해하게 됬다.
+
+        //if (s.contains(" ")) {
+        //            s.split(" ").joinToString(" ") { word ->
+        //                word.mapIndexed { index, c ->
+        //                    if (index % 2 == 0) c.toUpperCase() else c.toLowerCase()
+        //                }.joinToString("")
+        //            }
+        //        } else {
+        //            s.mapIndexed { index, c ->
+        //                if (index % 2 == 0) c.toUpperCase() else c.toLowerCase()
+        //            }.joinToString("")
+        //        }
+        //이렇게 줄였다.
 
 // 다른사람풀이중 이게 제일 신선.. 나머지는 다 내꺼랑 동일하네..
 //        s.split(" ").joinToString(" ") { word ->
@@ -240,6 +293,11 @@ object Lv1 {
 
     fun myStyleArray(strings: Array<String>, n: Int): Array<String> =
         strings.map { it }.sorted().sortedBy { it[n] }.toTypedArray()
+
+    //2번째 풀이
+    //strings.toList().sorted().sortedBy { it[n] }.toTypedArray()
+    //달라진건 없는듯..
+
     // 먼가 아래가 더 깔끔하다.(맵과 형변환이 필요 없으니..)
 //        strings.also {
 //            it.sorted()
@@ -264,6 +322,23 @@ object Lv1 {
             }
         }
         return sum
+
+        //2번째풀이
+        //val max = kotlin.math.max(a, b).toLong()
+        //        val min = kotlin.math.min(a, b).toLong()
+        //
+        //        var result = 0L
+        //        return if (max == min) {
+        //            max
+        //        } else {
+        //
+        //            for (i in min..max) {
+        //                result += i
+        //            }
+        //            result
+        //        }
+        // 위에보는 나은듯 싶은데 for문 대신에 (start..end).sum() 이런식으로 활용했으면 어땠을까 한다.
+
 //      깔끔한듯 싶다.  그리고 max(a, b) 요런거 알아두면 더 좋을듯 min(a,b)랑.
 //        val start : Long = (if(a>b) b else a).toLong()
 //        val end : Long = (if(a>b) a else b).toLong()
@@ -632,5 +707,6 @@ object Lv1 {
 
         return descendArray.map { it.key }.toIntArray()
     }
+
 
 }
