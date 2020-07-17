@@ -1,8 +1,10 @@
 package com.work.codingtest
 
 
+import android.util.Log
 import java.lang.Math.max
 import java.util.*
+import kotlin.random.Random
 
 object Lv1 {
 
@@ -567,6 +569,26 @@ object Lv1 {
         }
         return intArrayOf(array[array.lastIndex], (n * m) / array[array.lastIndex])
     }
+    //숫자가 몇개가 되든 최대공약수 구하는 방식이긴하다.
+//    val t1 = Random.nextInt(1, 20)
+//
+//    val t2 = Random.nextInt(1, 20)
+//
+//    Log.d("결과", t1.toString())
+//    Log.d("결과", t2.toString())
+//
+//    val min = min(t1, t2)
+//
+//    val list = mutableListOf<String>()
+//
+//    for (i in 1..min) {
+//        if (t1 % i == 0 && t2 % i == 0) {
+//            list.add(i.toString())
+//        }
+//    }
+//    Log.d("결과", list.joinToString("-"))
+
+    //아래는 그냥 외워라. 재귀스타일.
     //이런 스타일이 괜찮은듯. (최대공약수 구하는 함수.)
     //fun gcm(a: Int, b: Int): Int {
     //        if (b == 0) {
@@ -708,5 +730,331 @@ object Lv1 {
         return descendArray.map { it.key }.toIntArray()
     }
 
+
+    fun siger(s: String, n: Int): String {
+        //z = 122, Z =90
+        //a = 97, A = 65
+
+        var result = ""
+
+        s.forEach {
+            if (it == ' ') {
+                result += " "
+            } else {
+                when {
+                    (it.toInt() >= 97 || it.toInt() <= 122) -> {
+                        result += if (it.toInt() + n > 122) {
+                            (it - 26 + n)
+                        } else {
+                            it + n
+                        }
+                    }
+                    (it.toInt() >= 65 || it.toInt() <= 90) -> {
+                        result += if (it.toInt() + n > 90) {
+                            (it - 26 + n)
+                        } else {
+                            it + n
+                        }
+                    }
+                }
+            }
+        }
+        return result
+
+
+    }
+//
+//
+//    //1번알고리즘
+//    fun num1(s: String): Int {
+//        val length = s.length
+//        var len = 1
+//        for (i in length downTo 0) {
+//            len = max(len, maxLength(s, i, i))
+//            len = max(len, maxLength(s, i, i + 1))
+//        }
+//        return len
+//    }
+//
+//    private fun maxLength(s: String, i1: Int, i2: Int): Int {
+//        var left = i1
+//        var right = i2
+//        while (left >= 0 && right < s.length && s[left] == s[right]) {
+//            left--
+//            right++
+//        }
+//        return right - left - 1
+//    }
+//
+//
+//    //3번알고리즘
+//    fun num2(movie: Array<String>): Array<String> {
+//        val resultMap = mutableMapOf<String, Int>()
+//        val distinctMovie = movie.distinct()
+//        distinctMovie.forEach { distinctStr ->
+//            var count = 0
+//            movie.forEach { str ->
+//                if (distinctStr == str) {
+//                    count += 1
+//                }
+//            }
+//            resultMap[distinctStr] = count
+//        }
+//        return resultMap.toList().sortedBy { it.first }.sortedByDescending { it.second }
+//            .map { it.first }.toTypedArray()
+//    }
+
+
+//    fun num1() {
+//        try {
+//            val url = URL("https://google.co.kr")
+//            val conn = url.openConnection() as HttpURLConnection
+//            conn.requestMethod = "GET"
+//            conn.doOutput = true
+//            conn.doInput = true
+//            conn.useCaches = false
+//            conn.defaultUseCaches = false
+//
+//            val result = conn.inputStream.bufferedReader().use {
+//                it.readText()
+//            }
+//            Log.d("결과", result)
+//            print(result)
+//        } catch (exception: Exception) {
+//            Log.d("결과", exception.toString())
+//
+//        }
+//
+//    }
+
+    fun n1(moves: Array<String>) {
+        var answer = 0
+
+        val toXToY = mutableSetOf<Pair<Int, Int>>()
+        var x = 0
+        var y = 0
+        toXToY.add(Pair(x, y))
+        moves.forEach {
+            when (it) {
+                "U" -> {
+                    y++
+                    toXToY.add(Pair(x, y))
+                }
+                "D" -> {
+                    y--
+                    toXToY.add(Pair(x, y))
+                }
+                "L" -> {
+                    x--
+                    toXToY.add(Pair(x, y))
+                }
+                "R" -> {
+                    x++
+                    toXToY.add(Pair(x, y))
+                }
+            }
+        }
+        toXToY.forEach {
+            Log.d("x-y", "${it.first},${it.second}")
+        }
+    }
+
+
+    //하이퍼커넥트 1번문제
+    fun solution1(phone_number: String): Int {
+        var answer = 0
+
+        if (phone_number.length in 1..30) {
+
+            if (phone_number.contains("-")) {
+
+                val splitPhoneNumber = phone_number.split("-")
+
+                when (splitPhoneNumber.size) {
+                    3 -> {
+                        answer =
+                            if (splitPhoneNumber[0].length == 3 && splitPhoneNumber[1].length == 4 && splitPhoneNumber[2].length == 4
+                                && isDigit(splitPhoneNumber[0]) && isDigit(splitPhoneNumber[1]) && isDigit(
+                                    splitPhoneNumber[2]
+                                )
+                            ) {
+                                1
+                            } else {
+                                -1
+                            }
+                    }
+                    4 -> {
+                        answer =
+                            if (splitPhoneNumber[0] == "+82" && splitPhoneNumber[1].length == 2 && splitPhoneNumber[2].length == 4 && splitPhoneNumber[3].length == 4
+                                && isDigit(splitPhoneNumber[1]) && isDigit(splitPhoneNumber[2]) && isDigit(
+                                    splitPhoneNumber[3]
+                                )
+                            ) {
+                                3
+                            } else {
+                                -1
+                            }
+
+                    }
+                    else -> {
+                        answer = -1
+                    }
+                }
+
+            } else {
+                answer = if (phone_number.length == 11 && isDigit(phone_number)) {
+                    2
+                } else {
+                    -1
+                }
+            }
+        } else {
+            answer = -1
+        }
+
+        return answer
+    }
+
+    //1번문제관련 함수
+    fun isDigit(string: String): Boolean {
+
+        var isDigit = true
+        string.forEach {
+            if (!it.isDigit()) {
+                isDigit = false
+            }
+        }
+        return isDigit
+    }
+
+    //하이퍼커넥트 2번문제
+    fun solution2(emails: Array<String>): Int {
+        var answer = 0
+
+        if (emails.size in 1..100000) {
+            emails.forEach {
+                if (isContainTopLevelDomain(it)) {
+
+                    if (splitText(it)) {
+                        if (isFitText(it)) {
+                            answer += 1
+                        }
+                    }
+                }
+            }
+        }
+        return answer
+    }
+
+    //2번문제관련 함수
+    fun isContainTopLevelDomain(str: String): Boolean {
+
+        var isContain = false
+
+        if (str.length in 1..100) {
+            if (str.length >= 4 && str.substring(str.lastIndex - 3, str.lastIndex)[0] == '.') {
+                isContain = when (str.substring(str.lastIndex - 2)) {
+                    "com" -> {
+                        true
+                    }
+                    "net" -> {
+                        true
+                    }
+                    "org" -> {
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
+        }
+        return isContain
+    }
+
+    //2번문제관련 함수
+    fun splitText(str: String): Boolean {
+        val splitText = str.split("@")
+
+        if (splitText.size == 2) {
+
+            val lastIndexSplitText = splitText[splitText.lastIndex]
+            var isFitTextLength = false
+
+            if (isContainTopLevelDomain(lastIndexSplitText)) {
+                if (lastIndexSplitText.substring(
+                        0,
+                        lastIndexSplitText.lastIndex - 3
+                    ).length in 1..100
+                ) {
+                    isFitTextLength = true
+                }
+            }
+
+            return isFitTextLength
+        } else {
+            return false
+        }
+
+    }
+
+    //2번문제관련 함수
+    fun isFitText(str: String): Boolean {
+
+        var textLength = 0
+
+        val splitText = str.split("@")
+
+        splitText.forEachIndexed { index, s ->
+            if (index != splitText.lastIndex) {
+                textLength += s.length
+            }
+        }
+        return textLength in 1..100
+    }
+
+
+    // 간단한 손코딩 문제 복기
+    // 고민 1
+    // 근데 왜섞지..?ㅋ  섞어야될 상황이 언제인지가 궁금하네ㅋㅋ
+    // 고민 2
+    // 함수의 파라메터를 IntArray vs Array<Int> 를 고민했었다.
+
+    //방법1
+    // shuffled() 를 사용하려면 list 형식으로 array 를 변환해줘야하고 다시 array 로 형변환하여 반환.
+    // shuffled() 를 하게되면 mutableList 로 바꾸고나서 값을 shuffle 하고 list 로 반환.
+    // 단점이라 생각한다면 형변환 빈도수가 많다?
+    // 근데 저거 쓰면 조건이 하나 더 붙는다. 섞었는데 똑같아... 이럴때에 어떻게 할꺼냐..
+    // 문제에 섞었을때에 값이 일치해도 되냐 안되냐 여부에 따라 아래 코드 사용 가능한지 결정될듯..
+    fun shuffleArray1(array: IntArray): IntArray =
+        array.map { it }.shuffled().toIntArray()
+
+    //////            if (arr.contentEquals(shuffleArr(arr))) {
+    //////                Log.d("동일한게", "있을수있다")
+    //////                break
+    //////            }
+
+    //방법2
+    // 당장 생각해 낸 방법이긴 한데.. 먼가 비효율적인 답이라고 생각한다.
+    // 크기만큼 루프를 돌리면 되는데 무한루프를 돌리면 크기 이상이 돌아야 나올 수도 있으니..
+
+    fun shuffleArray2(arr: IntArray): IntArray {
+        val toShuffleArr = mutableListOf<Int>()
+
+        while (true) {
+            if (arr.size == toShuffleArr.distinct().size)
+                break
+
+            val randomNum = Random.nextInt(1, arr.size + 1)
+
+            toShuffleArr.apply {
+                add(randomNum)
+                distinct()
+            }
+        }
+        return toShuffleArr.toIntArray()
+    }
+
+    //index로 하는거 생각해보기...!
 
 }

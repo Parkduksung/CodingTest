@@ -3,7 +3,6 @@ package com.work.codingtest
 import java.util.*
 
 object Lv2 {
-
     //오래 걸릴게 아닌데..ㅜ
     fun top(heights: IntArray): IntArray {
         val resultArray = mutableListOf<Int>()
@@ -243,6 +242,4 @@ object Lv2 {
 //
 //        }
 //    }
-
-
 }
