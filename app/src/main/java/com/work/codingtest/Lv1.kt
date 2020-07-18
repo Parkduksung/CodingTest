@@ -1016,7 +1016,7 @@ object Lv1 {
 
     // 간단한 손코딩 문제 복기
     // 고민 1
-    // 근데 왜섞지..?ㅋ  섞어야될 상황이 언제인지가 궁금하네ㅋㅋ
+    // 근데 왜섞지..?ㅋ  섞어야될 상황이 언제인지가 궁금하네ㅋㅋ => 노래 랜덤 재생 등이 있겠구만..
     // 고민 2
     // 함수의 파라메터를 IntArray vs Array<Int> 를 고민했었다.
 
@@ -1056,5 +1056,18 @@ object Lv1 {
     }
 
     //index로 하는거 생각해보기...!
+    //index swap 방식 => 조언 반영..
+    // 이렇게하면 shuffle 하기 이전 array 랑 절대 같을 수 없다는게 하나 추가됨.
+    // 예전 선택정렬이나
+    fun shuffleArray3(arr: IntArray): IntArray {
+        for (i in 0 until arr.size - 1) {
+            val randomNum = Random.nextInt(i + 1, arr.size)
+            val temp = arr[i]
+            arr[i] = arr[randomNum]
+            arr[randomNum] = temp
+        }
+        return arr
+    }
+
 
 }
