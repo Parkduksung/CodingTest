@@ -1058,7 +1058,7 @@ object Lv1 {
     //index로 하는거 생각해보기...!
     //index swap 방식 => 조언 반영..
     // 이렇게하면 shuffle 하기 이전 array 랑 절대 같을 수 없다는게 하나 추가됨.
-    // 예전 선택정렬이나
+    // 근데 Collection.Shuffle 드가보니 이런식으로 index 를 swap 했군..
     fun shuffleArray3(arr: IntArray): IntArray {
         for (i in 0 until arr.size - 1) {
             val randomNum = Random.nextInt(i + 1, arr.size)
