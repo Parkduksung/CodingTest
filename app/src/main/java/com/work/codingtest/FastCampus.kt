@@ -78,4 +78,91 @@ object FastCampus {
         }
     }
 
+
+    // 1- 사칙 연산을 수행할 수 있는 클래스
+
+    // 좀 대충한거같긴함..
+    class Calculation(
+        private val num1: Int,
+        private val num2: Int
+    ) {
+        fun toAdd(): Int = num1 + num2
+        fun toMin(): Int = num1 - num2
+        fun toMul(): Int = num1 * num2
+        fun toDiv(): Int = num1 / num2
+    }
+
+
+    // 2- 이행 계좌 만들기
+    //계좌생성기능(이름,생년월일)
+    //잔고를 확인하는기능
+    //출금기능
+    //예금기능
+
+    data class Client(
+        var name: String = "",
+        var birthDay: String = "",
+        var money: Int = 0
+    )
+
+    class MyAccount {
+        //        private var money = 0
+        private val client by lazy { Client() }
+
+//        private lateinit var name: String
+//        private lateinit var birthDay: String
+
+        //아래 방식들보단 Model 만드는게 나은듯.
+//        fun initAccount(name: String, birthDay: String) {
+//            this.name = name
+//            this.birthDay = birthDay
+//        }
+//
+//        fun checkInformation(): Map<String, String> =
+//            if (::name.isInitialized || ::birthDay.isInitialized) {
+//                mapOf(Pair(name, birthDay))
+//            } else {
+//                emptyMap()
+//            }
+//
+//        fun getAccountName(): String =
+//            if (::birthDay.isInitialized) {
+//                birthDay
+//            } else {
+//                ""
+//            }
+//        fun getAccountBirthDay(): String =
+//            if (::name.isInitialized) {
+//                name
+//            } else {
+//                ""
+//            }
+
+//        fun checkAccount(): Int = money
+//
+//        fun toDeposit(deposit: Int) {
+//            money += deposit
+//        }
+//
+//        fun toWithdrawal(withdrawal: Int) {
+//            money -= withdrawal
+//        }
+
+        fun initAccount(name: String, birthDay: String) {
+            client.name = name
+            client.birthDay = birthDay
+        }
+
+        fun getClientInformation(): Client = client
+
+        fun toDeposit(deposit: Int) {
+            client.money += deposit
+        }
+
+        fun toWithdrawal(withdrawal: Int) {
+            client.money -= withdrawal
+        }
+    }
+
+
 }
