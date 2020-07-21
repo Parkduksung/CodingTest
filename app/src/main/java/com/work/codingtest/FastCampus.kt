@@ -165,4 +165,54 @@ object FastCampus {
     }
 
 
+    //3- tv 클래스
+    //on/off 기능
+    //채널을 돌리는 기능  => 원형리스트 쓰면 더 좋을것같긴한데..
+    //초기 채널은 s사 m사 k사 3개
+
+    //ShardPreferences 를 사용해서 이전에 채널 인덱스를 저장해서 사용해도 상관없는거고
+    // 임의로 저장해놔야할 것이 많다면 Room 을 사용하느 것도 괜찮은 방법인듯.
+
+    //1차
+    class TV {
+        private var powerState = false
+        private var index = 0
+        private val channelList by lazy {
+            mutableListOf<String>().apply {
+                add("sbs")
+                add("kbs")
+                add("mbc")
+            }
+        }
+
+        private fun showChannel(index: Int) = channelList[index]
+
+        fun powerOnOff(isState: Boolean) {
+            powerState = isState
+        }
+
+        fun upChannel() {
+            if (powerState) {
+                if (channelList.size == index) {
+                    index = 0
+                    showChannel(index)
+                } else {
+                    index += 1
+                    showChannel(index)
+                }
+            }
+        }
+
+        fun downChannel() {
+            if (powerState) {
+                if (channelList.size == index) {
+                    index = channelList.size
+                    showChannel(index)
+                } else {
+                    index -= 1
+                    showChannel(index)
+                }
+            }
+        }
+    }
 }
