@@ -1070,4 +1070,69 @@ object Lv1 {
     }
 
 
+    fun checkInput(input: String?): List<String> =
+        if (input != null) {
+            if (input.isNotEmpty()) {
+                val splitInput = input.split(",")
+                if (splitInput.size == 2) {
+                    if (splitInput[0].length == 7 || splitInput[0][0] == '#' || splitInput[1].toInt() >= 0 || splitInput[1].toInt() <= 100) {
+                        val containShapeList = splitInput[0].map { it }.filter { it == '#' }
+                        val splitCountList = splitInput[0].substring(1).map { it }
+                            .filter { it >= 'a' || it <= 'f' || it >= 'A' || it <= 'F' || it >= '0' || it <= '9' }
+
+                        if (containShapeList.size == 1 || splitCountList.size == 6) {
+                            splitInput.map { it.toUpperCase() }
+                        } else {
+                            emptyList()
+                        }
+                    } else {
+                        emptyList()
+                    }
+                } else {
+                    emptyList()
+                }
+            } else {
+                emptyList()
+            }
+        } else {
+            emptyList()
+        }
+
+
+    fun convertToARGB(colorCode: String, transparentPercent: Int): String =
+        if (colorCode[0] == '#' || colorCode.isNotEmpty() || colorCode.length == 7 || transparentPercent >= 0 || transparentPercent <= 100) {
+            if (transparentPercent == 0) {
+                "#00" + colorCode.substring(1)
+            } else {
+                val to10 = ((transparentPercent.toFloat() / 100) * 256 - 1).toInt()
+                val toConvertHex = Integer.toHexString(to10)
+                "#" + toConvertHex.toUpperCase() + colorCode.substring(1)
+            }
+        } else {
+            ""
+        }
+
+
+    fun checkOverlapString(overlapCount: Int, stringList: List<String>): String {
+        val toSplitOverlapCount = stringList.map { it.split(".") }
+        val toRemoveLastIndexList = toSplitOverlapCount.map {
+            it.subList(0,it.lastIndex-1)
+        }
+        val setList = mutableListOf<String>()
+        toRemoveLastIndexList.forEach {
+            if (it.size >= overlapCount) {
+                setList.add(it.subList(0,overlapCount).joinToString("."))
+            } else {
+                setList.add(it.joinToString("."))
+            }
+        }
+
+        return if (setList.distinct().size == 1) {
+            setList.distinct()[0]
+        } else {
+            "없음"
+        }
+    }
+
+
 }

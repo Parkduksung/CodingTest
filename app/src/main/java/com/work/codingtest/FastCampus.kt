@@ -1,6 +1,9 @@
 package com.work.codingtest
 
+import android.content.Context
+import android.util.AttributeSet
 import android.util.Log
+import androidx.appcompat.widget.AppCompatTextView
 
 object FastCampus {
     //1번문제
@@ -215,4 +218,17 @@ object FastCampus {
             }
         }
     }
+
+    //빨주노초파남보검흰 9가지로 view 를 나누는데 계속 CustomView 를 만들어라.
+
+    class CustomTextView @JvmOverloads constructor(
+        context: Context,
+        attr: AttributeSet? = null,
+        defStyleAttr: Int = 0
+    ) : AppCompatTextView(context, attr, defStyleAttr) {
+
+
+    }
+
+
 }
