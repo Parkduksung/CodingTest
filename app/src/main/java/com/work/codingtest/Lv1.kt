@@ -1070,6 +1070,7 @@ object Lv1 {
     }
 
 
+    // T사 코테
     fun checkInput(input: String?): List<String> =
         if (input != null) {
             if (input.isNotEmpty()) {
@@ -1133,6 +1134,95 @@ object Lv1 {
             "없음"
         }
     }
+
+
+    // E사 코테
+
+    //            "3285-3764-9934-2453",
+    //            "3285376499342453",
+    //            "3285-3764-99342453",
+    //            "328537649934245",
+    //            "3285376499342549",
+    //            "3285-3764-9934-2452"
+    // 결과 1 1 0 0 0 이런식으로 나와야함
+
+    fun sol1(stringArray: Array<String>): IntArray {
+
+        val removeSplitArray = removeSplitText(stringArray)
+
+        val toEvenTwiceList = mutableListOf<List<Int>>()
+
+        removeSplitArray.forEach {
+            if (it.isEmpty()) {
+                toEvenTwiceList.add(emptyList())
+            } else {
+                toEvenTwiceList.add(it.mapIndexed { index, c ->
+                    if (index % 2 == 0) {
+                        sumOfDigit(c.toString().toInt())
+                    } else {
+                        c.toString().toInt()
+                    }
+                })
+            }
+        }
+
+        val resultList = mutableListOf<Int>()
+
+        toEvenTwiceList.forEach {
+            if (it.isNotEmpty()) {
+                if (it.sum() % 10 == 0) {
+                    resultList.add(1)
+                } else {
+                    resultList.add(0)
+                }
+            } else {
+                resultList.add(0)
+            }
+
+        }
+        return resultList.toIntArray()
+
+    }
+
+
+    private fun removeSplitText(stringArray: Array<String>): Array<String> {
+        val removeSplitTextList = mutableListOf<String>()
+        stringArray.forEach {
+            if (it.contains("-")) {
+                removeSplitTextList.add(checkString(it))
+            } else {
+                if (it.length == 16) {
+                    removeSplitTextList.add(it)
+                } else {
+                    removeSplitTextList.add("")
+                }
+            }
+        }
+        return removeSplitTextList.toTypedArray()
+    }
+
+    private fun sumOfDigit(num: Int): Int {
+        val toMultiplicationTwo = num * 2
+
+        return if (toMultiplicationTwo / 10 != 0) {
+            toMultiplicationTwo.toString().map { it.toString().toInt() }.sum()
+        } else {
+            toMultiplicationTwo
+        }
+    }
+
+    private fun checkString(string: String): String {
+        val toConvertString =
+            string.split("-").filter { it.length == 4 }.joinToString("")
+        return if (toConvertString.length == 16) {
+            toConvertString
+        } else {
+            ""
+        }
+    }
+
+
+
 
 
 }
