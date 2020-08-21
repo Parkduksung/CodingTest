@@ -6,4 +6,8 @@ object Exercism {
         return "Hello, World!"
     }
 
+    fun reverse(input: String): String = input.reversed()
+
+
+
 }
