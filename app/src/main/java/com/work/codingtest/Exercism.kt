@@ -1,5 +1,8 @@
 package com.work.codingtest
 
+import kotlin.math.pow
+import kotlin.math.sqrt
+
 object Exercism {
 
     fun hello(): String {
@@ -62,6 +65,33 @@ object Exercism {
             else -> {
                 emptyList()
             }
+        }
+    }
+
+    fun score(x: Number, y: Number /* choose proper types! */): Int {
+
+        val SQUARE_NUMBER = 2
+
+        val distanceFromOrigin =
+            sqrt(x.toDouble().pow(SQUARE_NUMBER) + y.toDouble().pow(SQUARE_NUMBER))
+
+        when {
+            distanceFromOrigin <= 1 -> {
+                return 10
+            }
+
+            1 < distanceFromOrigin && distanceFromOrigin <= 5 -> {
+                return 5
+            }
+
+            5 < distanceFromOrigin && distanceFromOrigin <= 10 -> {
+                return 1
+            }
+
+            else -> {
+                return 0
+            }
+
         }
     }
 }
