@@ -68,7 +68,7 @@ object Exercism {
         }
     }
 
-    fun score(x: Number, y: Number /* choose proper types! */): Int {
+    fun dart(x: Number, y: Number /* choose proper types! */): Int {
 
         val SQUARE_NUMBER = 2
 
@@ -92,6 +92,29 @@ object Exercism {
                 return 0
             }
 
+        }
+    }
+
+    // 문제 파악이 잘 안됬었음...
+    class BankAccount {
+        private var _balance = 0L
+        private var isClosed = false
+
+        val balance: Long
+            get() {
+                if (isClosed) throw IllegalStateException()
+                return _balance
+            }
+
+        fun adjustBalance(amount: Long) {
+            if (isClosed) throw IllegalStateException()
+            synchronized(this) {
+                _balance += amount
+            }
+        }
+
+        fun close() {
+            isClosed = true
         }
     }
 }
