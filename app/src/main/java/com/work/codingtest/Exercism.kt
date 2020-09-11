@@ -96,6 +96,7 @@ object Exercism {
     }
 
     // 문제 파악이 잘 안됬었음...
+    // Atomic , ConcurrentQueue 사용해보기..
     class BankAccount {
         private var _balance = 0L
         private var isClosed = false
@@ -108,6 +109,7 @@ object Exercism {
 
         fun adjustBalance(amount: Long) {
             if (isClosed) throw IllegalStateException()
+            //동기화 시켜주는거임.
             synchronized(this) {
                 _balance += amount
             }
@@ -116,5 +118,42 @@ object Exercism {
         fun close() {
             isClosed = true
         }
+    }
+
+    fun wordy(input: String): Int {
+        val startString = "What is"
+        val endString = "?"
+
+
+        val coreSentence = input.substring(startString.length, input.length - endString.length)
+
+        val transformCoreSentence = coreSentence // removing question mark
+            .replace("multiplied by", "multiple")
+            .replace("divided by", "divide")
+            .replace("raised to the", "pow")
+            .replace("th power", "")
+            .replace("st power", "")
+            .replace("nd power", "")
+            .split(" ")
+            .dropWhile { it.all { char -> !char.isDigit() } }
+            .toMutableList()
+
+
+        var result = transformCoreSentence.removeAt(0).toInt()
+
+        while (transformCoreSentence.isNotEmpty()) {
+            val operator = transformCoreSentence.removeAt(0)
+            val num = transformCoreSentence.removeAt(0).toInt()
+
+            result = when (operator) {
+                "plus" -> result.plus(num)
+                "minus" -> result.minus(num)
+                "multiple" -> result.times(num)
+                "divide" -> result.div(num)
+                "pow" -> result.toDouble().pow(num.toDouble()).toInt()
+                else -> throw IllegalArgumentException()
+            }
+        }
+        return result
     }
 }
