@@ -156,4 +156,105 @@ object Exercism {
         }
         return result
     }
+
+    class CustomSet @JvmOverloads constructor(
+        private val num1: Int? = null,
+        private val num2: Int? = null,
+        private val num3: Int? = null,
+        private val num4: Int? = null
+    ) {
+
+
+        private var list =
+            mutableListOf<Int>().apply {
+                num1?.let { add(it) }
+                num2?.let { add(it) }
+                num3?.let { add(it) }
+                num4?.let { add(it) }
+            }
+
+        fun isEmpty(): Boolean =
+            list.isEmpty()
+
+
+        fun isSubset(other: CustomSet): Boolean =
+            other.list.containsAll(list)
+
+
+        fun isDisjoint(other: CustomSet): Boolean {
+            val _list = list
+            val _otherList = other.list
+
+            other.list.removeAll(_list)
+            list.removeAll(_otherList)
+
+            return other.list.isEmpty() || list.isEmpty() || other.list.size == list.size
+        }
+
+        fun contains(other: Int): Boolean {
+            var result = false
+            list.forEach { element ->
+                if (element == other) {
+                    result = true
+                }
+            }
+            return result
+        }
+
+        fun intersection(other: CustomSet): CustomSet {
+            return when {
+                other.list.isEmpty() -> {
+                    other
+                }
+                list.isEmpty() -> {
+                    this
+                }
+                else -> {
+                    val list = mutableListOf<Int>()
+                    val customSet1 = CustomSet(num1, num2, num3, num4)
+
+                    customSet1.list.forEach {
+                        if (other.contains(it)) {
+                            list.add(it)
+                        }
+                    }
+
+                    val result = CustomSet()
+                    result.list = list
+
+                    return result
+                }
+            }
+        }
+
+        fun add(other: Int) {
+            list.add(other)
+        }
+
+        override fun equals(other: Any?): Boolean =
+            (other as CustomSet).list.containsAll(list) && list.containsAll(other.list)
+
+        operator fun plus(other: CustomSet): CustomSet {
+            val customSet =
+                CustomSet(num1, num2, num3, num4)
+
+            customSet.list.addAll(other.list)
+
+            customSet.list.distinct()
+
+            return customSet
+        }
+
+        operator fun minus(other: CustomSet): CustomSet {
+            val customSet =
+                CustomSet(num1, num2, num3, num4)
+
+            customSet.list.removeAll(other.list)
+
+            return customSet
+        }
+    }
+
+
+
 }
