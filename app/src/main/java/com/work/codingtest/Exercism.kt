@@ -256,5 +256,64 @@ object Exercism {
     }
 
 
+    fun cryptoSquare(plaintext: String): String {
 
+        val onlyText = plaintext.filter(Character::isLetterOrDigit).toLowerCase()
+
+        if (onlyText.isEmpty()) {
+            return onlyText
+        }
+
+        var searchCount = 0
+
+        var isSquare = false
+
+        while (true) {
+            if (searchCount * searchCount == onlyText.length) {
+                isSquare = true
+                break
+            }
+            if ((searchCount + 1) * (searchCount + 1) == onlyText.length) {
+                isSquare = true
+                searchCount++
+                break
+            }
+            if ((searchCount * searchCount) < onlyText.length && onlyText.length < ((searchCount + 1) * (searchCount + 1))) {
+                break
+            }
+            searchCount++
+        }
+
+        var resultString = ""
+        if (isSquare) {
+            // 정사각형일때
+            val result = mutableListOf<String>()
+            val reverseResult = mutableListOf<String>()
+            var num = 0
+            for (i in 0 until searchCount) {
+                var string = ""
+                for (j in 0 until searchCount) {
+                    string += onlyText[num]
+                    num++
+                }
+                result.add(string)
+            }
+
+            for (i in 0 until searchCount) {
+                var string = ""
+                for (j in 0 until searchCount) {
+                    string += result[j][i]
+                }
+                reverseResult.add(string)
+            }
+
+            resultString = reverseResult.joinToString(" ")
+
+        } else {
+            // 직사각형일때
+
+        }
+        return resultString
+    }
 }
+
