@@ -255,8 +255,7 @@ object Exercism {
         }
     }
 
-
-    fun cryptoSquare(plaintext: String): String {
+    fun ciphertext(plaintext: String): String {
 
         val onlyText = plaintext.filter(Character::isLetterOrDigit).toLowerCase()
 
@@ -267,6 +266,7 @@ object Exercism {
         var searchCount = 0
 
         var isSquare = false
+        var isNearSquare = false
 
         while (true) {
             if (searchCount * searchCount == onlyText.length) {
@@ -279,41 +279,51 @@ object Exercism {
                 break
             }
             if ((searchCount * searchCount) < onlyText.length && onlyText.length < ((searchCount + 1) * (searchCount + 1))) {
+                if (((searchCount + 1) * (searchCount + 1)) - onlyText.length < onlyText.length - (searchCount * searchCount)) {
+                    isNearSquare = true
+                }
                 break
             }
             searchCount++
         }
-
-        var resultString = ""
-        if (isSquare) {
-            // 정사각형일때
-            val result = mutableListOf<String>()
-            val reverseResult = mutableListOf<String>()
-            var num = 0
-            for (i in 0 until searchCount) {
-                var string = ""
-                for (j in 0 until searchCount) {
-                    string += onlyText[num]
-                    num++
-                }
-                result.add(string)
-            }
-
-            for (i in 0 until searchCount) {
-                var string = ""
-                for (j in 0 until searchCount) {
-                    string += result[j][i]
-                }
-                reverseResult.add(string)
-            }
-
-            resultString = reverseResult.joinToString(" ")
-
+        return if (isSquare) {
+            matrixOperationToString(onlyText, searchCount, searchCount)
         } else {
-            // 직사각형일때
-
+            if (isNearSquare) {
+                matrixOperationToString(onlyText, searchCount + 1, searchCount + 1)
+            } else {
+                matrixOperationToString(onlyText, searchCount, searchCount + 1)
+            }
         }
-        return resultString
     }
+
+    private fun matrixOperationToString(inputText: String, row: Int, column: Int): String {
+        val result = mutableListOf<String>()
+        val reverseResult = mutableListOf<String>()
+        var count = 0
+
+        for (i in 0 until row) {
+            var string = ""
+            for (j in 0 until column) {
+                if (count >= inputText.length) {
+                    string += " "
+                } else {
+                    string += inputText[count]
+                }
+                count++
+            }
+            result.add(string)
+        }
+        for (i in 0 until column) {
+            var string = ""
+            for (j in 0 until row) {
+                string += result[j][i]
+            }
+            reverseResult.add(string)
+        }
+        return reverseResult.joinToString(" ")
+    }
+
+
 }
 
