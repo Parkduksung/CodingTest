@@ -255,7 +255,7 @@ object Exercism {
         }
     }
 
-    fun ciphertext(plaintext: String): String {
+    fun cryptoSquare(plaintext: String): String {
 
         val onlyText = plaintext.filter(Character::isLetterOrDigit).toLowerCase()
 
@@ -323,7 +323,6 @@ object Exercism {
         }
         return reverseResult.joinToString(" ")
     }
-
 
 }
 
