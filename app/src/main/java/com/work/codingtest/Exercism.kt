@@ -324,26 +324,54 @@ object Exercism {
         return reverseResult.joinToString(" ")
     }
 
+//    fun isValid(number: String): Boolean {
+////        for (i in number.indices) {
+////            var char = number.get(i)
+////            if (!char.isDigit() && char != '-' && char != 'X') {
+////                return false
+////            }
+////            if (char == 'X' && i != number.length - 1) {
+////                return false
+////            }
+////        }
+////        var newNumber = number.replace("-", "")
+////        if (newNumber.length != 10) {
+////            return false
+////        }
+////        var resultSum = 0
+////        newNumber.forEachIndexed { index, c ->
+////            if (c == 'X') {
+////                resultSum += (newNumber.length - index) * 10
+////            } else {
+////                resultSum += (newNumber.length - index) * c.toString().toInt()
+////            }
+////        }
+////        return resultSum % 11 == 0
+////    }
+
     fun isValid(number: String): Boolean {
-        for (i in number.indices) {
-            var char = number.get(i)
-            if (!char.isDigit() && char != '-' && char != 'X') {
-                return false
-            }
-            if (char == 'X' && i != number.length - 1) {
-                return false
-            }
-        }
-        var newNumber = number.replace("-", "")
-        if (newNumber.length != 10) {
-            return false
-        }
+
+        val convertString = number.replace(Regex("^[0-9X]"), "")
+
+        return isCheckPositionX(convertString) and
+                isCheckStringlength(convertString) and
+                isMod(convertString)
+    }
+
+
+    private fun isCheckPositionX(string: String): Boolean =
+        string[string.lastIndex] == 'X' && string.filter { it == 'X' }.count() == 1
+
+    private fun isCheckStringlength(string: String): Boolean =
+        string.length == 10
+
+    private fun isMod(string: String): Boolean {
         var resultSum = 0
-        newNumber.forEachIndexed { index, c ->
+        string.forEachIndexed { index, c ->
             if (c == 'X') {
-                resultSum += (newNumber.length - index) * 10
+                resultSum += (string.length - index) * 10
             } else {
-                resultSum += (newNumber.length - index) * c.toString().toInt()
+                resultSum += (string.length - index) * c.toString().toInt()
             }
         }
         return resultSum % 11 == 0
