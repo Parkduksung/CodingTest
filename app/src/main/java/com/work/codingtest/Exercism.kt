@@ -376,5 +376,27 @@ object Exercism {
         }
         return resultSum % 11 == 0
     }
+
+    fun MatchingBrackets(input: String): Boolean {
+
+        val removeUnnecessaryCharacters = input.replace(Regex("[^(){}\\[\\]]"), "")   //여기서 공백도 제거.
+
+        if (removeUnnecessaryCharacters.length % 2 == 1)
+            return false
+
+        return reduceParenthesis(removeUnnecessaryCharacters)
+
+    }
+
+    private fun reduceParenthesis(input: String): Boolean {
+        var resultText = input
+        for (i in 0..input.length / 2) {
+            resultText = resultText
+                .replace("()", "")
+                .replace("{}", "")
+                .replace("[]", "")
+        }
+        return resultText.isEmpty()
+    }
 }
 
