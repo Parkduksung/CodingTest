@@ -1117,12 +1117,12 @@ object Lv1 {
     fun checkOverlapString(overlapCount: Int, stringList: List<String>): String {
         val toSplitOverlapCount = stringList.map { it.split(".") }
         val toRemoveLastIndexList = toSplitOverlapCount.map {
-            it.subList(0,it.lastIndex-1)
+            it.subList(0, it.lastIndex - 1)
         }
         val setList = mutableListOf<String>()
         toRemoveLastIndexList.forEach {
             if (it.size >= overlapCount) {
-                setList.add(it.subList(0,overlapCount).joinToString("."))
+                setList.add(it.subList(0, overlapCount).joinToString("."))
             } else {
                 setList.add(it.joinToString("."))
             }
@@ -1222,7 +1222,8 @@ object Lv1 {
     }
 
 
-
-
-
+    //백터의 내적.
+    fun vector(a: IntArray, b: IntArray): Int =
+        a.zip(b).map { it.first * it.second }.sum()
+    //indices 로 할수도 있다.
 }
