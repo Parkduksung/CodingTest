@@ -1,4 +1,4 @@
-package com.work.codingtest
+package com.work.codingtest.exercism
 
 import kotlin.math.pow
 import kotlin.math.sqrt

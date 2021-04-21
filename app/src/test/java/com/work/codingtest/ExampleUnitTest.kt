@@ -1,5 +1,6 @@
 package com.work.codingtest
 
+import com.work.codingtest.exercism.Exercism
 import org.junit.Test
 
 import org.junit.Assert.*
