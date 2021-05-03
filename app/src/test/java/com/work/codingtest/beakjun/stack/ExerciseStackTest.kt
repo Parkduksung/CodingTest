@@ -24,4 +24,46 @@ class ExerciseStackTest {
     }
 
 
+    //exam2
+    @Test
+    fun `list (())()) 의 결과값은 No 이어야 한다`() {
+
+        var list = "(())())"
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "(((()())()"
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "(()())((()))"
+
+        assertEquals(ExerciseStack.exam2(list), true)
+
+        list = "((()()(()))(((())))()"
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "()()()()(()()())()"
+
+        assertEquals(ExerciseStack.exam2(list), true)
+
+        list = "(()((())()("
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "(("
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "))"
+
+        assertEquals(ExerciseStack.exam2(list), false)
+
+        list = "())(()"
+
+        assertEquals(ExerciseStack.exam2(list), false)
+    }
+
+
 }

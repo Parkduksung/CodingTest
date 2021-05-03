@@ -22,4 +22,24 @@ object ExerciseStack {
         return stack.sum()
     }
 
+
+    //출처 : https://www.acmicpc.net/problem/9012
+    fun exam2(list: String) : Boolean{
+
+        val stack = Stack<Char>()
+
+        list.forEach {
+            if(it == '('){
+                stack.push(it)
+            }else{
+                try {
+                    stack.pop()
+                }catch (e : Exception){
+                    return false
+                }
+            }
+        }
+        return !(stack.contains('(') || stack.contains(')'))
+    }
+
 }
