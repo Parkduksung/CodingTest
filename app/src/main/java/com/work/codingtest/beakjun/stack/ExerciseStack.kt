@@ -14,7 +14,7 @@ object ExerciseStack {
         list.forEach { num ->
             if (num == 0) {
                 stack.pop()
-            }else{
+            } else {
                 stack.push(num)
             }
         }
@@ -24,22 +24,60 @@ object ExerciseStack {
 
 
     //출처 : https://www.acmicpc.net/problem/9012
-    fun exam2(list: String) : Boolean{
+    fun exam2(list: String): Boolean {
 
         val stack = Stack<Char>()
 
         list.forEach {
-            if(it == '('){
+            if (it == '(') {
                 stack.push(it)
-            }else{
+            } else {
                 try {
                     stack.pop()
-                }catch (e : Exception){
+                } catch (e: Exception) {
                     return false
                 }
             }
         }
         return !(stack.contains('(') || stack.contains(')'))
     }
+
+
+    //출처 : https://www.acmicpc.net/problem/4949
+    fun exam3(string: String): Boolean {
+
+        val stack = Stack<Char>()
+
+        string.forEach {
+            if (it == '(' || it == '[') {
+                stack.push(it)
+            } else if (it == ')') {
+                try {
+                    if (stack.peek() == '(') {
+                        stack.pop()
+                    } else {
+                        stack.push(it)
+                    }
+                } catch (e: Exception) {
+                    return false
+                }
+            } else if (it == ']') {
+                try {
+                    if (stack.peek() == '[') {
+                        stack.pop()
+                    } else {
+                        stack.push(it)
+                    }
+                } catch (e: Exception) {
+                    return false
+                }
+            }
+        }
+
+
+        return !(stack.contains('(') || stack.contains(')') ||
+                stack.contains('[') || stack.contains(']'))
+    }
+
 
 }

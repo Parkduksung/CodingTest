@@ -65,5 +65,39 @@ class ExerciseStackTest {
         assertEquals(ExerciseStack.exam2(list), false)
     }
 
+    //exam3
+    @Test
+    fun `각 줄마다 해당 문자열이 균형을 이루고 있으면 "yes"를, 아니면 "no"를 출력한다`() {
+
+        var string = "So when I die (the [first] I will see in (heaven) is a score list)."
+
+        assertEquals(ExerciseStack.exam3(string), true)
+
+        string = "[ first in ] ( first out )."
+
+        assertEquals(ExerciseStack.exam3(string), true)
+
+        string = "Half Moon tonight (At least it is better than no Moon at all]."
+
+        assertEquals(ExerciseStack.exam3(string), false)
+
+        string = "A rope may form )( a trail in a maze."
+
+        assertEquals(ExerciseStack.exam3(string), false)
+
+        string = "Help( I[m being held prisoner in a fortune cookie factory)]."
+
+        assertEquals(ExerciseStack.exam3(string), false)
+
+        string = "([ (([( [ ] ) ( ) (( ))] )) ])."
+
+        assertEquals(ExerciseStack.exam3(string), true)
+
+        string = " ."
+
+        assertEquals(ExerciseStack.exam3(string), true)
+
+    }
+
 
 }
