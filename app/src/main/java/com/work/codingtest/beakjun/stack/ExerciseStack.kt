@@ -80,4 +80,26 @@ object ExerciseStack {
     }
 
 
+    //출처 : acmicpc.net/problem/10799
+    fun exam4(string: String): Int {
+
+        val stack = Stack<Char>()
+
+        var count = 0
+
+        string.forEachIndexed { index, c ->
+            if (c == '(') {
+                stack.push(c)
+            } else {
+                stack.pop()
+                count += if (string[index - 1] == '(') {
+                    stack.size
+                } else {
+                    1
+                }
+            }
+        }
+        return count
+    }
+
 }

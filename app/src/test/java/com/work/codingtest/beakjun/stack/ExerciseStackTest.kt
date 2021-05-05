@@ -18,7 +18,7 @@ class ExerciseStackTest {
     @Test
     fun `list 1,3,5,4,0,0,7,0,0,6 의 결과값은 7 이어야 한다`() {
 
-        val list = listOf(1,3,5,4,0,0,7,0,0,6)
+        val list = listOf(1, 3, 5, 4, 0, 0, 7, 0, 0, 6)
 
         assertEquals(ExerciseStack.exam1(list), 7)
     }
@@ -96,6 +96,20 @@ class ExerciseStackTest {
         string = " ."
 
         assertEquals(ExerciseStack.exam3(string), true)
+
+    }
+
+    //exam4
+    @Test
+    fun `쇠막대기`() {
+
+        var string = "()(((()())(())()))(())"
+
+        assertEquals(ExerciseStack.exam4(string), 17)
+
+        string = "(((()(()()))(())()))(()())"
+
+        assertEquals(ExerciseStack.exam4(string), 24)
 
     }
 
