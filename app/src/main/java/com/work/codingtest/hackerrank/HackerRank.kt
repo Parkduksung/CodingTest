@@ -81,5 +81,39 @@ object HackerRank {
         return resultList.toTypedArray()
     }
 
+    fun programmerStrings(s: String): Int {
+
+        var start = 0
+
+        var end = 0
+
+        val stringProgrammer = "programmer"
+
+        val queue: Queue<Char> = LinkedList<Char>()
+
+        stringProgrammer.forEach {
+            queue.add(it)
+        }
+
+        s.forEachIndexed { index, char ->
+
+            if (queue.isNullOrEmpty()) {
+                if (char == 'p') {
+                    end = index
+                    return@forEachIndexed
+                }
+            } else {
+                if (queue.peek() == char) {
+                    queue.poll()
+
+                    if (queue.isEmpty()) {
+                        start = index + 1
+                    }
+                }
+            }
+        }
+
+        return end - start
+    }
 
 }

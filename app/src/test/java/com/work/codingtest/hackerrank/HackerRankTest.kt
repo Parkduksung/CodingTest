@@ -24,4 +24,13 @@ class HackerRankTest {
 
     }
 
+    @Test
+    fun programmerStringsTest() {
+
+        val mockData = "programmerttprogrammer"
+
+        assertEquals(HackerRank.programmerStrings(mockData), 2)
+
+    }
+
 }
