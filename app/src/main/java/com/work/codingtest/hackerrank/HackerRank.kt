@@ -116,4 +116,31 @@ object HackerRank {
         return end - start
     }
 
+    fun countTeams(skills: Array<Int>, minPlayers: Int, minLevel: Int, maxLevel: Int): Int {
+
+        val rangeLevel = IntRange(minLevel, maxLevel)
+
+        val containLevelPlayerList = skills.filter { i -> i in rangeLevel }
+
+        var result = 0
+
+        for (i in minPlayers..containLevelPlayerList.size) {
+            result += factorialLoop(containLevelPlayerList.size) / (factorialLoop(i) * factorialLoop(
+                (containLevelPlayerList.size - i)
+            ))
+        }
+
+        return result;
+
+    }
+
+    private fun factorialLoop(n: Int): Int {
+        var acc = 1
+        for (number in 1..n) {
+            acc *= number
+        }
+        return acc
+    }
+
+
 }

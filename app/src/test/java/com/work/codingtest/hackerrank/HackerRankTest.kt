@@ -33,4 +33,10 @@ class HackerRankTest {
 
     }
 
+    @Test
+    fun countTeamsTest() {
+
+        assertEquals(HackerRank.countTeams(arrayOf(12, 4, 6, 13, 5, 10), 3, 4, 10), 5)
+
+    }
 }
