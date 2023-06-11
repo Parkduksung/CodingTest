@@ -1,8 +1,11 @@
 package com.work.codingtest.programmers
 
 import java.util.*
+import kotlin.math.ceil
+import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.math.sqrt
 
 object Lv2 {
     //오래 걸릴게 아닌데..ㅜ
@@ -250,26 +253,17 @@ object Lv2 {
     fun `두_원_사이의_정수쌍`(r1: Int, r2: Int): Long {
         var answer: Long = 0
 
-        val maxNum = max(r1, r2)
-        val minNum = min(r1, r2)
-
-
-
-        for (i in -maxNum..maxNum) {
-
-            for (j in -maxNum..maxNum) {
-
-                val a = (i * i) + (j * j)
-                val b = (maxNum * maxNum)
-                val c = (minNum * minNum)
-
-                if(a in c..b){
-                    answer++
-                }
-            }
+        //2사분면만 더하고 나중에 곱하기 4 ()
+        for(r in 1 .. r2){
+            //r2,r1이 대각, r은 높이
+            //r == 1, 2, 3일 때 점의 수
+            val upper = floor(sqrt(r2*r2.toDouble() - r*r.toDouble())).toLong()
+            val lower = ceil(sqrt(r1*r1.toDouble() - r*r.toDouble())).toLong()
+            // println("r: $r upper : $upper lower : ${lower}")
+            // println("${upper-lower +1}")
+            answer += upper - lower + 1
         }
-
-        return answer
+        return 4 * answer
     }
 
 
