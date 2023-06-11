@@ -185,13 +185,14 @@ object HackerRank {
         val toSplitInputScore = inputScore.split(" ").map { it.toInt() }
 
         val sumScore = toSplitInputScore.sum()
-        val averageScore = round(toSplitInputScore.average() * 100) / 100
+        val averageScore = (round(toSplitInputScore.average() * 100) / 100).toInt()
 
         val gradeAndMoney =
             when (averageScore) {
-                in 90..100 -> {
+                in LongRange(90, 100) -> {
                     "A+ 1000000"
                 }
+
                 in 80 until 90 -> {
                     "A 800000"
                 }

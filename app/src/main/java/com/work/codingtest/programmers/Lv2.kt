@@ -1,6 +1,8 @@
 package com.work.codingtest.programmers
 
 import java.util.*
+import kotlin.math.max
+import kotlin.math.min
 
 object Lv2 {
     //오래 걸릴게 아닌데..ㅜ
@@ -172,6 +174,7 @@ object Lv2 {
                             cnt1--
 
                     }
+
                     '*' -> {
                         if (cnt1 != 0)
                             sumStar++
@@ -242,4 +245,32 @@ object Lv2 {
 //
 //        }
 //    }
+
+
+    fun `두_원_사이의_정수쌍`(r1: Int, r2: Int): Long {
+        var answer: Long = 0
+
+        val maxNum = max(r1, r2)
+        val minNum = min(r1, r2)
+
+
+
+        for (i in -maxNum..maxNum) {
+
+            for (j in -maxNum..maxNum) {
+
+                val a = (i * i) + (j * j)
+                val b = (maxNum * maxNum)
+                val c = (minNum * minNum)
+
+                if(a in c..b){
+                    answer++
+                }
+            }
+        }
+
+        return answer
+    }
+
+
 }
